@@ -45,32 +45,31 @@ public class Date
 
     public void setDate(int monthInt, int day, int year)
     {
-        if (dateOK(monthInt, day, year))
+        if (dateOK(monthInt, day, year) )
         {
             this.month = monthString(monthInt);
             this.day = day;
             this.year = year;
         }
-        else
-        {
-            System.out.println("Fatal Error in setDate(int, int, int)");
-            System.exit(0);
-        }
     }
 
-    public void setDate(String monthString, int day, int year)
+    public Date setDate(String monthString, int day, int year)
     {
-        if (dateOK(monthString, day, year))
+    	if (dateOK(monthString, day, year))
         {
-            this.month = monthString;
-            this.day = day;
-            this.year = year;
-        }
-        else
-        {
-            System.out.println("Fatal Error in setDate(String,int, int)");
-            System.exit(0);
-        }
+    		Date checker = new Date(1,1,1999);
+            checker.month = monthString; 
+             if(checker.getMonth() == 2 && day>28) {
+            	return null;
+            }else if((checker.getMonth() == 4 || checker.getMonth() == 6 || checker.getMonth() == 9 || checker.getMonth() == 11)&& day > 30) {
+            	return null;
+            }else if(day > 31) {
+            	return null;
+            }}
+    	this.month = monthString;
+    	this.day = day;
+        this.year = year;
+        return this;
     }
 
     public void setDate(int year)
@@ -253,7 +252,19 @@ public class Date
         }
     }
     public Date addOneDay() {
-    	System.out.println("Date.addOneDay() is not implemented yet");
+    	if( this.getMonth()  == 2 && this.getDay() == 28) {
+    		this.setDate(3, 1, this.getYear());
+    	}else if((this.getMonth() == 4 || this.getMonth() == 6 || this.getMonth() == 9 || this.getMonth() == 11)&& this.getDay() == 30) {
+    		this.setDate(this.getMonth()+1, 1, this.getYear());
+    	}else if(this.getDay() == 31){
+    		if(this.getMonth() == 12) {
+    			this.setDate(1,1,this.getYear()+1);
+    		}else
+    		this.setDate(this.getMonth()+1, 1, this.getYear());
+    	}else {
+    		this.setDate(this.getMonth(),this.getDay()+1, this.year);
+    	}
+    	
     	return this;
     }
     public static void main(String[] args) {

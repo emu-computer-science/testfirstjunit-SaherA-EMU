@@ -1,17 +1,17 @@
 package testingDates;
 
 import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.*;import org.junit.Before;
 
 public class DateAddDaysTest {
-	Date theDate, testerSM, testerOOM, testerOOY, testerDSDT;
+	private Date theDate, testerSM, testerOOM, testerOOY, testerDSDT;
 	@Before 
 	public void setUp() throws Exception{
-		Date theDate = new Date("December", 31, 2019);
-		Date testerSM = new Date("November", 30, 2019);
-		Date testerOOM = new Date("December", 31, 2019);
-		Date testerOOY = new Date("December", 31, 2018);
-		Date testerDSDT = new Date("February", 28, 2020);
+		theDate = new Date("December", 31, 2019);
+		testerSM = new Date("November", 30, 2019);
+		testerOOM = new Date("December", 31, 2019);
+		testerOOY = new Date("December", 31, 2018);
+		testerDSDT = new Date("February", 28, 2020);
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class DateAddDaysTest {
 	}
 	@Test
 	public void DateSetDateTest() {
-		testerDSDT.setDate(2,29,2020);
+		testerDSDT.setDate("February",29,2020);
 		assertEquals(28, testerDSDT.getDay());
 		testerDSDT.setDate(20, 20, 2999);
 		assertEquals(testerDSDT.getMonth(), 2);
